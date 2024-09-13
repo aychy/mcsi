@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import PrayerTimes from '@/components/PrayerTimes'
 import EventCalendar from '@/components/EventsDisplay'
 
