@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
+import { Calendar, momentLocalizer, View, Views } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
@@ -17,7 +17,7 @@ interface Event {
 }
 
 export default function EventCalendar() {
-  const [view, setView] = useState(Views.MONTH)
+  const [view, setView] = useState<View>(Views.MONTH)
   const [date, setDate] = useState(new Date())
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
 
@@ -95,7 +95,7 @@ export default function EventCalendar() {
         endAccessor="end"
         style={{ height: '100%' }}
         view={view}
-        onView={(newView) => setView(newView as Views)}
+        onView={(newView: View) => setView(newView)}
         date={date}
         onNavigate={onNavigate}
         eventPropGetter={eventStyleGetter}
