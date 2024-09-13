@@ -15,27 +15,35 @@ interface PrayerTimesData {
 }
 
 const fetchPrayerTimes = async (): Promise<PrayerTimesData> => {
-  const response = await fetch('http://api.aladhan.com/v1/timingsByCity?city=Staten Island&state=New York&country=United States&method=2')
-  const data = await response.json()
-  const timings = data.data.timings
+  try {
+    const response = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Staten Island&state=New York&country=United States&method=2')
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    const data = await response.json()
+    const timings = data.data.timings
 
-  const isDST = () => {
-    const today = new Date()
-    const jan = new Date(today.getFullYear(), 0, 1).getTimezoneOffset()
-    const jul = new Date(today.getFullYear(), 6, 1).getTimezoneOffset()
-    return Math.max(jan, jul) !== today.getTimezoneOffset()
-  }
+    const isDST = () => {
+      const today = new Date()
+      const jan = new Date(today.getFullYear(), 0, 1).getTimezoneOffset()
+      const jul = new Date(today.getFullYear(), 6, 1).getTimezoneOffset()
+      return Math.max(jan, jul) !== today.getTimezoneOffset()
+    }
 
-  const jumaTime = isDST() ? '13:10' : '12:10'
+    const jumaTime = isDST() ? '13:10' : '12:10'
 
-  return {
-    fajr: timings.Fajr,
-    sunrise: timings.Sunrise,
-    dhuhr: timings.Dhuhr,
-    asr: timings.Asr,
-    maghrib: timings.Maghrib,
-    isha: timings.Isha,
-    juma: jumaTime
+    return {
+      fajr: timings.Fajr,
+      sunrise: timings.Sunrise,
+      dhuhr: timings.Dhuhr,
+      asr: timings.Asr,
+      maghrib: timings.Maghrib,
+      isha: timings.Isha,
+      juma: jumaTime
+    }
+  } catch (error) {
+    console.error('Error fetching prayer times:', error)
+    throw error
   }
 }
 
@@ -58,7 +66,10 @@ const prayerIcons: { [key: string]: JSX.Element } = {
 }
 
 export default function PrayerTimes() {
-  const { data, isLoading, error } = useQuery<PrayerTimesData, Error>('prayerTimes', fetchPrayerTimes)
+  const { data, isLoading, error } = useQuery<PrayerTimesData, Error>('prayerTimes', fetchPrayerTimes, {
+    retry: 3,
+    retryDelay: 1000,
+  })
 
   if (isLoading) return <div className="text-center py-10 text-white">Loading prayer times...</div>
   if (error) return <div className="text-center py-10 text-red-500">Error fetching prayer times: {error.message}</div>
