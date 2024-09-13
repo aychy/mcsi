@@ -13,7 +13,7 @@ interface Event {
   start: Date
   end: Date
   allDay: boolean
-  desc?: string
+  desc: string
 }
 
 export default function EventCalendar() {
@@ -99,7 +99,7 @@ export default function EventCalendar() {
         date={date}
         onNavigate={onNavigate}
         eventPropGetter={eventStyleGetter}
-        tooltipAccessor={(event) => event.desc}
+        tooltipAccessor="desc"
         onSelectEvent={handleSelectEvent}
         formats={{
           eventTimeRangeFormat: ({ start, end }, culture, localizer) =>
