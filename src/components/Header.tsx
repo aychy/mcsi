@@ -6,6 +6,7 @@ import { useRouter, usePathname } from 'next/navigation'
 
 export default function Header({ className = '' }) {
   const [activeSection, setActiveSection] = useState('top')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
 
@@ -50,11 +51,20 @@ export default function Header({ className = '' }) {
 
   return (
     <header className={`bg-emerald-600 bg-opacity-80 text-white p-4 ${className}`}>
-      <nav className="flex justify-between items-center">
-        <button onClick={() => scrollToSection('top')} className="text-2xl font-bold">
-          Muslim Center of Staten Island
-        </button>
-        <ul className="flex space-x-4">
+      <nav className="flex flex-col md:flex-row justify-between items-center">
+        <div className="flex items-center justify-between w-full md:w-auto">
+          <button onClick={() => scrollToSection('top')} className="text-left">
+            <span className="text-2xl font-bold block">MCSI</span>
+            <span className="text-sm">Muslim Center of Staten Island</span>
+          </button>
+          <button 
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? 'Close' : 'Menu'}
+          </button>
+        </div>
+        <ul className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mt-4 md:mt-0 w-full md:w-auto`}>
           <li>
             <button
               onClick={() => scrollToSection('top')}

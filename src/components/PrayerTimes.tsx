@@ -79,27 +79,27 @@ export default function PrayerTimes() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-white shadow-2xl rounded-xl p-8 max-w-2xl w-full"
+      className="bg-white shadow-2xl rounded-xl p-4 sm:p-8 max-w-2xl w-full mx-auto"
     >
-      <h2 className="text-4xl font-bold text-center mb-6 text-emerald-800">Prayer Times</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <h2 className="text-3xl sm:text-4xl font-bold text-center mb-6 text-emerald-800">Prayer Times</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {data && Object.entries(data).map(([prayer, time], index) => (
           <motion.div
             key={prayer}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className={`flex items-center justify-between p-4 rounded-lg ${
-              prayer === 'juma' ? 'bg-emerald-100 col-span-2' : 'bg-gray-50'
+            className={`flex items-center justify-between p-3 sm:p-4 rounded-lg ${
+              prayer === 'juma' ? 'bg-emerald-100 col-span-full' : 'bg-gray-50'
             } shadow-md`}
           >
             <div className="flex items-center">
               {prayerIcons[prayer]}
-              <span className="ml-3 text-lg font-semibold capitalize text-gray-800">
+              <span className="ml-2 sm:ml-3 text-base sm:text-lg font-semibold capitalize text-gray-800">
                 {prayer === 'sunrise' ? 'Sunrise' : prayer}
               </span>
             </div>
-            <span className="text-lg font-bold text-emerald-600">{convertTo12HourFormat(time as string)}</span>
+            <span className="text-base sm:text-lg font-bold text-emerald-600">{convertTo12HourFormat(time as string)}</span>
           </motion.div>
         ))}
       </div>
