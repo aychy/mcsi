@@ -1,5 +1,15 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
+interface Hadith {
+  id: number;
+  hadithEnglish: string;
+  englishNarrator: string | null;
+  book: string;
+  chapter: string;
+  reference: string;
+  sunnahLink: string;
+}
+
 const books = [
   'bukhari',
   'muslim',
@@ -59,7 +69,7 @@ function getDateSeed() {
   return now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate()
 }
 
-let dailyHadithCache: { [key: number]: any } = {}
+const dailyHadithCache: { [key: number]: Hadith } = {}
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { type } = req.query
@@ -84,7 +94,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ error: 'Failed to fetch daily hadith' })
     }
   } else {
-    let shuffledBooks = [...books].sort(() => 0.5 - Math.random())
+    const shuffledBooks = [...books].sort(() => 0.5 - Math.random())
 
     for (const book of shuffledBooks) {
       try {
