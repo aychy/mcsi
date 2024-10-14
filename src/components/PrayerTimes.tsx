@@ -1,7 +1,7 @@
 'use client'
 
 import { useQuery } from 'react-query'
-import { SunIcon, MoonIcon } from '@heroicons/react/24/solid'
+import { SunIcon, MoonIcon, CalendarIcon } from '@heroicons/react/24/solid'
 import { motion } from 'framer-motion'
 
 interface PrayerTimesData {
@@ -12,6 +12,8 @@ interface PrayerTimesData {
   maghrib: string
   isha: string
   juma: string
+  gregorianDate: string
+  hijriDate: string
 }
 
 const fetchPrayerTimes = async (): Promise<PrayerTimesData> => {
@@ -22,6 +24,7 @@ const fetchPrayerTimes = async (): Promise<PrayerTimesData> => {
     }
     const data = await response.json()
     const timings = data.data.timings
+    const date = data.data.date
 
     const isDST = () => {
       const today = new Date()
@@ -39,7 +42,9 @@ const fetchPrayerTimes = async (): Promise<PrayerTimesData> => {
       asr: timings.Asr,
       maghrib: timings.Maghrib,
       isha: timings.Isha,
-      juma: jumaTime
+      juma: jumaTime,
+      gregorianDate: `${date.gregorian.weekday.en}, ${date.gregorian.month.en} ${date.gregorian.day}, ${date.gregorian.year}`,
+      hijriDate: `${date.hijri.day} ${date.hijri.month.en} ${date.hijri.year} AH`
     }
   } catch (error) {
     console.error('Error fetching prayer times:', error)
@@ -82,26 +87,40 @@ export default function PrayerTimes() {
       className="bg-white shadow-2xl rounded-xl p-4 sm:p-8 max-w-2xl w-full mx-auto"
     >
       <h2 className="text-3xl sm:text-4xl font-bold text-center mb-6 text-emerald-800">Prayer Times</h2>
+      
+      {/* Date Display */}
+      <div className="mb-6 text-center">
+        <div className="flex items-center justify-center mb-2">
+          <CalendarIcon className="h-6 w-6 text-emerald-600 mr-2" />
+          <span className="text-lg font-semibold text-gray-800">{data?.gregorianDate}</span>
+        </div>
+        <div className="text-md text-emerald-600 font-medium">{data?.hijriDate}</div>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-        {data && Object.entries(data).map(([prayer, time], index) => (
-          <motion.div
-            key={prayer}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            className={`flex items-center justify-between p-3 sm:p-4 rounded-lg ${
-              prayer === 'juma' ? 'bg-emerald-100 col-span-full' : 'bg-gray-50'
-            } shadow-md`}
-          >
-            <div className="flex items-center">
-              {prayerIcons[prayer]}
-              <span className="ml-2 sm:ml-3 text-base sm:text-lg font-semibold capitalize text-gray-800">
-                {prayer === 'sunrise' ? 'Sunrise' : prayer}
-              </span>
-            </div>
-            <span className="text-base sm:text-lg font-bold text-emerald-600">{convertTo12HourFormat(time as string)}</span>
-          </motion.div>
-        ))}
+        {data && Object.entries(data).map(([prayer, time], index) => {
+          if (prayer !== 'gregorianDate' && prayer !== 'hijriDate') {
+            return (
+              <motion.div
+                key={prayer}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className={`flex items-center justify-between p-3 sm:p-4 rounded-lg ${
+                  prayer === 'juma' ? 'bg-emerald-100 col-span-full' : 'bg-gray-50'
+                } shadow-md`}
+              >
+                <div className="flex items-center">
+                  {prayerIcons[prayer]}
+                  <span className="ml-2 sm:ml-3 text-base sm:text-lg font-semibold capitalize text-gray-800">
+                    {prayer === 'sunrise' ? 'Sunrise' : prayer}
+                  </span>
+                </div>
+                <span className="text-base sm:text-lg font-bold text-emerald-600">{convertTo12HourFormat(time as string)}</span>
+              </motion.div>
+            )
+          }
+        })}
       </div>
     </motion.div>
   )

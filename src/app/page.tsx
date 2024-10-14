@@ -2,14 +2,16 @@
 
 import PrayerTimes from '@/components/PrayerTimes'
 import EventCalendar from '@/components/EventsDisplay'
+import HadithOfTheDay from '@/components/HadithOfTheDay'
 
 export default function Home() {
   return (
     <div className="snap-y snap-mandatory h-screen overflow-y-scroll">
       <section id="top" className="snap-start min-h-screen flex items-center justify-center bg-gradient-to-r from-emerald-600 to-teal-600 p-4">
-        <div className="text-center text-white">
+        <div className="text-center text-white max-w-3xl">
           <h1 className="text-4xl sm:text-6xl font-bold mb-4">Welcome to MCSI</h1>
-          <p className="text-lg sm:text-xl">We are a welcoming community dedicated to serving Allah and our local community.</p>
+          <p className="text-lg sm:text-xl mb-6">We are a welcoming community dedicated to serving Allah and our local community.</p>
+          <HadithOfTheDay />
         </div>
       </section>
 

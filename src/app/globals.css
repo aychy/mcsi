@@ -19,3 +19,12 @@ html {
 .rbc-calendar {
   z-index: 1;
 }
+
+/* New styles for the 3D flip effect */
+.perspective {
+  perspective: 1000px;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}

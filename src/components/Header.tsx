@@ -87,6 +87,7 @@ export default function Header({ className = '' }) {
             </button>
           </li>
           <li><Link href="/donate" className="hover:text-emerald-200">Donate</Link></li>
+          <li><Link href="/resources" className="hover:text-emerald-200">Resources</Link></li>
         </ul>
       </nav>
     </header>
