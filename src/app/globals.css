@@ -4,18 +4,57 @@
 
 html {
   scroll-behavior: smooth;
+  height: 100%;
 }
 
 body {
   @apply bg-gray-100;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
-/* Add this to ensure the scroll-padding-top accounts for the fixed header */
+/* Improve scroll padding for fixed header */
 html {
-  scroll-padding-top: 4rem; /* Adjust this value based on your header height */
+  scroll-padding-top: 4rem;
 }
 
-/* Add this at the end of the file */
+/* Remove snap scrolling as it can be janky on mobile */
+.snap-y,
+.snap-mandatory,
+.snap-start {
+  scroll-snap-type: none;
+}
+
+/* Add smooth transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Improve touch scrolling */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Optional: Add custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .rbc-calendar {
   z-index: 1;
 }

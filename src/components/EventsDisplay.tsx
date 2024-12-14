@@ -15,9 +15,9 @@ interface Event {
 }
 
 const events: Event[] = [
-  { id: '1', day: 'Saturdays', time: '8:45 PM - 10:00 PM', title: 'Halaqa', description: 'Weekly Halaqa session. Join us for an enlightening discussion on Islamic topics.', isRecurring: true },
+  { id: '1', day: 'Saturdays', time: '7:30 PM - 10:00 PM', title: 'Halaqa', description: 'Join us for Isha prayer followed by enlightening discussions on Islamic topics.', isRecurring: true },
   { id: '2', day: 'Mondays', time: '5:00 PM - 7:00 PM', title: 'Quranic & Islamic Studies', description: 'For children ages 7 to 15 years old.', isRecurring: true },
-  { id: '3', day: 'Thursday', time: '7:00 PM - 8:30 PM', title: 'Eid al-Adha', description: 'Join us for Eid prayers and celebration.', isRecurring: false, date: new Date(2023, 5, 15) },
+  { id: '3', day: 'Thursday', time: '7:00 AM - 8:30 AM', title: 'Eid al-Adha', description: 'Join us for Eid prayers and celebration.', isRecurring: false, date: new Date(2023, 5, 15) },
 ]
 
 export default function EventsDisplay() {
