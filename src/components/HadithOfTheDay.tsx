@@ -47,7 +47,7 @@ export default function HadithOfTheDay() {
 
   if (isLoading) {
     return (
-      <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
+      <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
         <div className="text-white text-center">Loading hadith... This may take a moment.</div>
       </div>
     )
@@ -55,7 +55,7 @@ export default function HadithOfTheDay() {
 
   if (error) {
     return (
-      <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
+      <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
         <div className="text-red-500 text-center mb-4">{error}</div>
         <div className="flex justify-center">
           <motion.button 
@@ -73,7 +73,7 @@ export default function HadithOfTheDay() {
 
   if (!hadith) {
     return (
-      <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
+      <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
         <div className="text-white text-center">No hadith available. Please try again.</div>
         <div className="flex justify-center mt-4">
           <motion.button 
@@ -90,39 +90,45 @@ export default function HadithOfTheDay() {
   }
 
   return (
-    <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
+    <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-3xl mx-auto overflow-y-auto">
       <h2 className="text-2xl font-bold mb-4 text-white">
         {hadith.isDaily ? "Hadith of the Day" : "Random Hadith"}
       </h2>
-      {hadith.englishNarrator && (
-        <p className="text-white italic mb-2">{hadith.englishNarrator}</p>
-      )}
-      <p className="text-white mb-4">{hadith.hadithEnglish}</p>
-      <p className="text-white text-sm mb-2">
-        <strong>Book:</strong> {hadith.book}
-      </p>
-      {hadith.chapter && (
-        <p className="text-white text-sm mb-2">
-          <strong>Chapter:</strong> {hadith.chapter}
-        </p>
-      )}
-      <p className="text-white text-sm mb-2">
-        <strong>Reference:</strong> {hadith.reference}
-      </p>
-      <p className="text-white text-sm mb-6">
+      
+      <div className="space-y-4 mb-6">
+        {hadith.englishNarrator && (
+          <p className="text-white italic">{hadith.englishNarrator}</p>
+        )}
+        <p className="text-white text-lg leading-relaxed">{hadith.hadithEnglish}</p>
+        
+        <div className="text-white space-y-2">
+          <p className="text-sm">
+            <strong>Book:</strong> {hadith.book}
+          </p>
+          {hadith.chapter && (
+            <p className="text-sm">
+              <strong>Chapter:</strong> {hadith.chapter}
+            </p>
+          )}
+          <p className="text-sm">
+            <strong>Reference:</strong> {hadith.reference}
+          </p>
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
         <a 
           href={hadith.sunnahLink} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="text-blue-300 hover:text-blue-100 underline"
+          className="bg-blue-500 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-200 text-center w-full sm:w-auto"
         >
           View on Sunnah.com
         </a>
-      </p>
-      <div className="flex justify-center mt-4">
+        
         <motion.button 
           onClick={handleNextHadith}
-          className="bg-white text-emerald-600 px-6 py-2 rounded-full font-semibold shadow-md hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-200"
+          className="bg-white text-emerald-600 px-6 py-2 rounded-full font-semibold shadow-md hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-200 w-full sm:w-auto"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

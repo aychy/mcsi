@@ -6,7 +6,7 @@ import './globals.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 
 export const metadata: Metadata = {
-  title: 'Mosque Website',
+  title: 'MCSI',
   description: 'Welcome to our mosque',
 }
 
