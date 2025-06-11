@@ -100,7 +100,7 @@ export default function Home() {
 </p>
 
 <p>
-  <em>Everyone is welcome.</em> Whether you're looking to reconnect, learn, serve, or simply feel a sense of belonging, we invite you to be a part of this journey.
+  <em>Everyone is welcome.</em> Whether you&apos;re looking to reconnect, learn, serve, or simply feel a sense of belonging, we invite you to be a part of this journey.
 </p>
 
           </div>
@@ -108,7 +108,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
               <h3 className="text-xl font-semibold text-[#002537] mb-3">Prayer Services</h3>
-              <p className="text-[#003d52]">Join us for our five daily prayers and Friday Jumu'ah services.</p>
+              <p className="text-[#003d52]">Join us for our five daily prayers and Friday Jumu&apos;ah services.</p>
             </div>
             
             <div className="bg-white p-6 rounded-lg shadow-md text-center">
