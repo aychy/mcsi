@@ -1,6 +1,5 @@
 'use client'
 
-import PrayerTimes from '@/components/PrayerTimes'
 import EventCalendar from '@/components/EventsDisplay'
 import HadithOfTheDay from '@/components/HadithOfTheDay'
 
@@ -31,12 +30,16 @@ export default function Home() {
       </section>
 
       <section 
-        id="prayer-times" 
-        className="min-h-screen flex items-center justify-center bg-gradient-to-r from-teal-600 to-emerald-600 relative overflow-hidden p-4"
+        id="prayer-times"
+        className="pt-10 -mb-4 bg-white"
       >
-        <div className="relative z-10">
-          <PrayerTimes />
-        </div>
+        <iframe 
+          src="https://timing.athanplus.com/masjid/widgets/embed?theme=1&masjid_id=aAePGmLj" 
+          width="100%" 
+          height="800" 
+          frameBorder="0" 
+          allowTransparency={true}
+        />
       </section>
     </div>
   )
