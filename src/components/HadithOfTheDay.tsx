@@ -47,7 +47,7 @@ export default function HadithOfTheDay() {
 
   if (isLoading) {
     return (
-      <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
+      <div className="bg-[#003d52] bg-opacity-90 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
         <div className="text-white text-center">Loading hadith... This may take a moment.</div>
       </div>
     )
@@ -55,12 +55,12 @@ export default function HadithOfTheDay() {
 
   if (error) {
     return (
-      <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
+      <div className="bg-[#003d52] bg-opacity-90 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
         <div className="text-red-500 text-center mb-4">{error}</div>
         <div className="flex justify-center">
           <motion.button 
             onClick={() => fetchHadith('daily')}
-            className="bg-white text-emerald-600 px-6 py-2 rounded-full font-semibold shadow-md hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-200"
+            className="bg-white text-[#002537] px-6 py-2 rounded-full font-semibold shadow-md hover:bg-[#f0f7f8] focus:outline-none focus:ring-2 focus:ring-[#003d52] focus:ring-opacity-50 transition-colors duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -73,12 +73,12 @@ export default function HadithOfTheDay() {
 
   if (!hadith) {
     return (
-      <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
+      <div className="bg-[#003d52] bg-opacity-90 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
         <div className="text-white text-center">No hadith available. Please try again.</div>
         <div className="flex justify-center mt-4">
           <motion.button 
             onClick={() => fetchHadith('daily')}
-            className="bg-white text-emerald-600 px-6 py-2 rounded-full font-semibold shadow-md hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-200"
+            className="bg-white text-[#002537] px-6 py-2 rounded-full font-semibold shadow-md hover:bg-[#f0f7f8] focus:outline-none focus:ring-2 focus:ring-[#003d52] focus:ring-opacity-50 transition-colors duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -90,7 +90,7 @@ export default function HadithOfTheDay() {
   }
 
   return (
-    <div className="bg-white bg-opacity-20 p-6 rounded-lg shadow-lg max-w-3xl mx-auto overflow-y-auto">
+    <div className="bg-[#003d52] bg-opacity-90 p-6 rounded-lg shadow-lg max-w-3xl mx-auto overflow-y-auto">
       <h2 className="text-2xl font-bold mb-4 text-white">
         {hadith.isDaily ? "Hadith of the Day" : "Random Hadith"}
       </h2>
@@ -121,14 +121,14 @@ export default function HadithOfTheDay() {
           href={hadith.sunnahLink} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="bg-blue-500 text-white px-6 py-2 rounded-full font-semibold shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-200 text-center w-full sm:w-auto"
+          className="bg-[#003d52] text-white px-6 py-2 rounded-full font-semibold shadow-md hover:bg-[#004a60] focus:outline-none focus:ring-2 focus:ring-[#003d52] focus:ring-opacity-50 transition-colors duration-200 text-center w-full sm:w-auto"
         >
           View on Sunnah.com
         </a>
         
         <motion.button 
           onClick={handleNextHadith}
-          className="bg-white text-emerald-600 px-6 py-2 rounded-full font-semibold shadow-md hover:bg-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50 transition-colors duration-200 w-full sm:w-auto"
+          className="bg-white text-[#002537] px-6 py-2 rounded-full font-semibold shadow-md hover:bg-[#f0f7f8] focus:outline-none focus:ring-2 focus:ring-[#003d52] focus:ring-opacity-50 transition-colors duration-200 w-full sm:w-auto"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >

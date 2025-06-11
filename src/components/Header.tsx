@@ -7,7 +7,6 @@ import { useRouter, usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Header({ className = '' }) {
-  const [activeSection, setActiveSection] = useState('top')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
@@ -17,40 +16,23 @@ export default function Header({ className = '' }) {
     setIsMenuOpen(false)
   }, [pathname])
 
-  useEffect(() => {
-    if (pathname === '/') {
-      const handleScroll = () => {
-        const sections = ['top', 'events', 'prayer-times']
-        const currentSection = sections.find(section => {
-          const element = document.getElementById(section)
-          if (element) {
-            const rect = element.getBoundingClientRect()
-            return rect.top <= 100 && rect.bottom >= 100
-          }
-          return false
-        })
-        if (currentSection) {
-          setActiveSection(currentSection)
-        }
-      }
+  const navigateToPage = (page: string) => {
+    setIsMenuOpen(false)
+    router.push(page)
+  }
 
-      window.addEventListener('scroll', handleScroll)
-      return () => window.removeEventListener('scroll', handleScroll)
-    }
-  }, [pathname])
-
-  const scrollToSection = (sectionId: string) => {
+  const scrollToAbout = () => {
     setIsMenuOpen(false)
     if (pathname !== '/') {
       router.push('/')
       setTimeout(() => {
-        const element = document.getElementById(sectionId)
+        const element = document.getElementById('about-us')
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' })
         }
       }, 100)
     } else {
-      const element = document.getElementById(sectionId)
+      const element = document.getElementById('about-us')
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
       }
@@ -58,9 +40,9 @@ export default function Header({ className = '' }) {
   }
 
   return (
-    <header className={`fixed w-full bg-emerald-700 text-white py-3 px-6 z-50 ${className}`}>
+    <header className={`fixed w-full bg-[#002033] text-white py-3 px-6 z-50 ${className}`}>
       <nav className="flex justify-between items-center max-w-6xl mx-auto">
-        <button onClick={() => scrollToSection('top')} className="text-left z-20">
+        <button onClick={() => navigateToPage('/')} className="text-left z-20">
           <Image
             src="/logo.png"
             alt="Muslim Center of Staten Island"
@@ -85,22 +67,22 @@ export default function Header({ className = '' }) {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-6">
-          {['Home', 'Events', 'Prayer Times', 'Donate', 'Resources'].map((item) => (
+          {['Home', 'About Us', 'Events', 'Prayer Times', 'Contact', 'Donate', 'Resources'].map((item) => (
             <li key={item}>
-              {item === 'Donate' || item === 'Resources' ? (
-                <Link 
-                  href={`/${item.toLowerCase()}`} 
-                  className="hover:text-emerald-200 transition-colors"
-                >
-                  {item}
-                </Link>
-              ) : (
+              {item === 'About Us' ? (
                 <button
-                  onClick={() => scrollToSection(item === 'Home' ? 'top' : item.toLowerCase().replace(' ', '-'))}
-                  className={`${activeSection === (item === 'Home' ? 'top' : item.toLowerCase().replace(' ', '-')) ? 'font-bold' : ''} hover:text-emerald-200 transition-colors`}
+                  onClick={scrollToAbout}
+                  className="hover:text-[#a0cfd4] transition-colors"
                 >
                   {item}
                 </button>
+              ) : (
+                <Link 
+                  href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`} 
+                  className={`${pathname === (item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`) ? 'font-bold' : ''} hover:text-[#a0cfd4] transition-colors`}
+                >
+                  {item}
+                </Link>
               )}
             </li>
           ))}
@@ -114,26 +96,26 @@ export default function Header({ className = '' }) {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed inset-0 bg-emerald-700 z-10 md:hidden"
+              className="fixed inset-0 bg-[#002033] z-10 md:hidden"
             >
               <div className="flex flex-col items-center justify-center h-full">
                 <ul className="space-y-8 text-center">
-                  {['Home', 'Events', 'Prayer Times', 'Donate', 'Resources'].map((item) => (
+                  {['Home', 'About Us', 'Events', 'Prayer Times', 'Contact', 'Donate', 'Resources'].map((item) => (
                     <li key={item}>
-                      {item === 'Donate' || item === 'Resources' ? (
-                        <Link 
-                          href={`/${item.toLowerCase()}`} 
-                          className="text-2xl font-semibold hover:text-emerald-200 transition-colors"
-                        >
-                          {item}
-                        </Link>
-                      ) : (
+                      {item === 'About Us' ? (
                         <button
-                          onClick={() => scrollToSection(item === 'Home' ? 'top' : item.toLowerCase().replace(' ', '-'))}
-                          className="text-2xl font-semibold hover:text-emerald-200 transition-colors"
+                          onClick={scrollToAbout}
+                          className="text-2xl font-semibold hover:text-[#a0cfd4] transition-colors"
                         >
                           {item}
                         </button>
+                      ) : (
+                        <Link 
+                          href={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`} 
+                          className="text-2xl font-semibold hover:text-[#a0cfd4] transition-colors"
+                        >
+                          {item}
+                        </Link>
                       )}
                     </li>
                   ))}

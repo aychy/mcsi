@@ -15,9 +15,15 @@ interface Event {
 }
 
 const events: Event[] = [
-  { id: '1', day: 'Saturdays', time: '7:30 PM - 10:00 PM', title: 'Halaqa', description: 'Join us for Isha prayer followed by enlightening discussions on Islamic topics.', isRecurring: true },
-  { id: '2', day: 'Mondays', time: '5:00 PM - 7:00 PM', title: 'Quranic & Islamic Studies', description: 'For children ages 7 to 15 years old.', isRecurring: true },
-  { id: '3', day: 'Thursday', time: '7:00 AM - 8:30 AM', title: 'Eid al-Adha', description: 'Join us for Eid prayers and celebration.', isRecurring: false, date: new Date(2023, 5, 15) },
+  { 
+    id: '1', 
+    day: 'Saturday', 
+    time: '7:30 PM - 10:00 PM', 
+    title: 'Halaqa / Hangouts', 
+    description: 'Join us every Saturday for Maghrib, a short halaqa, and chill hangout after. Come through!', 
+    isRecurring: true 
+  },
+  { id: '2', day: 'Monday', time: '5:00 PM - 7:00 PM', title: 'Quranic & Islamic Studies', description: 'For children ages 7 to 15 years old.', isRecurring: true },
 ]
 
 export default function EventsDisplay() {
@@ -33,7 +39,7 @@ export default function EventsDisplay() {
       <div className="flex border-b">
         <button
           className={`flex-1 py-4 px-6 text-lg font-semibold ${
-            activeTab === 'weekly' ? 'bg-emerald-500 text-white' : 'bg-gray-100 text-gray-700'
+            activeTab === 'weekly' ? 'bg-[#002537] text-white' : 'bg-gray-100 text-gray-700'
           }`}
           onClick={() => setActiveTab('weekly')}
         >
@@ -41,7 +47,7 @@ export default function EventsDisplay() {
         </button>
         <button
           className={`flex-1 py-4 px-6 text-lg font-semibold ${
-            activeTab === 'special' ? 'bg-emerald-500 text-white' : 'bg-gray-100 text-gray-700'
+            activeTab === 'special' ? 'bg-[#002537] text-white' : 'bg-gray-100 text-gray-700'
           }`}
           onClick={() => setActiveTab('special')}
         >
@@ -93,8 +99,8 @@ function EventCard({ event, expanded, toggleExpand }: { event: Event; expanded: 
         onClick={toggleExpand}
       >
         <div className="flex items-center space-x-4">
-          <div className="bg-emerald-100 p-2 rounded-full">
-            <CalendarIcon className="h-6 w-6 text-emerald-600" />
+          <div className="bg-[#e6f3f5] p-2 rounded-full">
+            <CalendarIcon className="h-6 w-6 text-[#003d52]" />
           </div>
           <div>
             <h3 className="text-lg font-semibold text-gray-800">{event.title}</h3>
