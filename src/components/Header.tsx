@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter, usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -60,8 +61,14 @@ export default function Header({ className = '' }) {
     <header className={`fixed w-full bg-emerald-700 text-white py-3 px-6 z-50 ${className}`}>
       <nav className="flex justify-between items-center max-w-6xl mx-auto">
         <button onClick={() => scrollToSection('top')} className="text-left z-20">
-          <span className="text-xl font-bold">MCSI</span>
-          <span className="text-xs block">Muslim Center of Staten Island</span>
+          <Image
+            src="/logo.png"
+            alt="Muslim Center of Staten Island"
+            width={200}
+            height={60}
+            className="h-12 w-auto"
+            priority
+          />
         </button>
 
         {/* Hamburger Menu Button */}

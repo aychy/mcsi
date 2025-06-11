@@ -37,7 +37,8 @@ export default function Home() {
           src="https://timing.athanplus.com/masjid/widgets/embed?theme=1&masjid_id=aAePGmLj" 
           width="100%" 
           height="800" 
-          frameBorder="0" 
+          style={{backgroundColor: 'bg-emerald-500', border: 'none'}}
+          className="border-none"
           allowTransparency={true}
         />
       </section>
