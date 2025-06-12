@@ -94,7 +94,7 @@ Sent from MCSI website contact form`
             Contact Us
           </h1>
           <p className="text-lg text-[#003d52] max-w-3xl mx-auto">
-            We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            We would love to hear from you. Send us a message and we will respond as soon as possible.
           </p>
         </div>
 
