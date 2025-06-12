@@ -92,11 +92,11 @@ export default function Home() {
 </p>
 
 <p>
-  Our goal is to continue growing—not just in size, but in spirit. We aim to be a space where everyone feels at home: from elders to youth, longtime members to new visitors, and neighbors of all faiths and cultures.
+  Our goal is to continue growing&mdash;not just in size, but in spirit. We aim to be a space where everyone feels at home: from elders to youth, longtime members to new visitors, and neighbors of all faiths and cultures.
 </p>
 
 <p>
-  Through regular prayers, classes, community events, and outreach, we strive to be a source of light and benefit for our local community—both within and beyond our walls.
+  Through regular prayers, classes, community events, and outreach, we strive to be a source of light and benefit for our local community&mdash;both within and beyond our walls.
 </p>
 
 <p>
