@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Head from 'next/head'
 
 
 export default function ContactPage() {
@@ -88,6 +89,12 @@ Sent from MCSI website contact form`
 
   return (
     <div className="min-h-screen bg-[#f0f7f8] py-12 px-4">
+      <Head>
+        <script
+          async
+          src="https://widgets.givebutter.com/latest.umd.cjs?acct=6V5AKrOxZPIyF0Yp&p=other"
+        ></script>
+      </Head>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#002537] mb-4">

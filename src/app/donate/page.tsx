@@ -1,8 +1,27 @@
 'use client'
 
+import Head from 'next/head'
+import dynamic from 'next/dynamic'
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'givebutter-form': any;
+    }
+  }
+}
+
+const GivebutterForm = dynamic(() => import('../../components/GivebutterForm'), { ssr: false })
+
 export default function DonatePage() {
   return (
     <div className="min-h-screen bg-[#f0f7f8] py-12 px-4">
+      <Head>
+        <script
+          async
+          src="https://widgets.givebutter.com/latest.umd.cjs?acct=6V5AKrOxZPIyF0Yp&p=other"
+        ></script>
+      </Head>
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl sm:text-5xl font-bold text-[#002537] mb-4">
@@ -37,14 +56,15 @@ export default function DonatePage() {
               </ul>
             </div>
             
-            <div className="bg-[#f0f7f8] p-6 rounded-lg">
-              <h3 className="text-xl font-semibold text-[#002537] mb-4">Make a Donation</h3>
-              <p className="text-[#003d52] mb-4">
-                Donation options and instructions will be available soon. Please contact us directly for now.
-              </p>
-              <div className="space-y-2 text-sm text-[#003d52]">
-                <p><strong>Phone:</strong> Coming soon</p>
-                <p><strong>Email:</strong> Coming soon</p>
+            <div className="bg-[#002537] p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-white mb-4">Make a Donation</h3>
+              <div className="space-y-4">
+                <p className="text-white">
+                  Support our community through our secure Givebutter donation platform.
+                </p>
+                <div className="w-full flex justify-center">
+                  <GivebutterForm />
+                </div>
               </div>
             </div>
           </div>
