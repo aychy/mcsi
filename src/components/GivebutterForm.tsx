@@ -1,17 +1,5 @@
 import { useEffect, useState } from 'react';
 
-// Extend JSX to include custom Givebutter widget element
-declare module 'react' {
-  namespace JSX {
-    interface IntrinsicElements {
-      'givebutter-widget': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
-        id?: string;
-        suppressHydrationWarning?: boolean;
-      };
-    }
-  }
-}
-
 export default function GivebutterForm() {
   const [scriptLoaded, setScriptLoaded] = useState(false);
 
@@ -59,6 +47,8 @@ export default function GivebutterForm() {
     <div className="w-full">
       {/* Donation Form Widget */}
       <div className="w-full">
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
         <givebutter-widget id="gVwP9p" suppressHydrationWarning={true}></givebutter-widget>
       </div>
     </div>
