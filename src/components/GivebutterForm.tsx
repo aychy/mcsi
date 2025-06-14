@@ -1,9 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-declare global {
+// Extend JSX to include custom Givebutter widget element
+declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
-      'givebutter-widget': any;
+      'givebutter-widget': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & {
+        id?: string;
+        suppressHydrationWarning?: boolean;
+      };
     }
   }
 }

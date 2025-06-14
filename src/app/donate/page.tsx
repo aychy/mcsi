@@ -3,14 +3,6 @@
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'givebutter-form': any;
-    }
-  }
-}
-
 const GivebutterForm = dynamic(() => import('../../components/GivebutterForm'), { ssr: false })
 
 export default function DonatePage() {
