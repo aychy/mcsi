@@ -2,82 +2,86 @@
 
 import Link from 'next/link'
 import VisitorCounter from '@/components/VisitorCounter'
+import WelcomeCarousel from '@/components/WelcomeCarousel'
 
 export default function Home() {
   return (
     <div className="min-h-screen relative">
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center bg-[#002537] relative overflow-hidden py-20">
-        <div className="text-center text-white max-w-6xl relative z-10 p-4 mx-auto">
-          <h1 className="text-4xl sm:text-6xl font-bold mb-6">Welcome to MCSI</h1>
-          <p className="text-lg sm:text-xl mb-8">We are a welcoming community dedicated to serving Allah and our local community.</p>
+      <section className="bg-[#002537] relative overflow-hidden">
+        {/* Carousel with text */}
+        <div className="relative">
+          <div className="relative z-0">
+            <WelcomeCarousel />
+          </div>
           
-          {/* Quick Navigation */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 mt-16">
-            <button 
-              onClick={() => {
-                const element = document.getElementById('about-us')
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' })
-                }
-              }}
-              className="bg-white bg-opacity-10 hover:bg-opacity-20 p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col text-center h-32"
-            >
-              <div className="flex-1 flex flex-col justify-center">
-                <h3 className="text-lg font-semibold mb-2 h-6 flex items-center justify-center">About Us</h3>
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/40 z-10"></div>
+          
+          {/* Text content positioned on carousel */}
+          <div className="absolute top-8 sm:top-12 left-0 right-0 z-20 text-center text-white px-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Welcome to MCSI</h1>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-4xl mx-auto">We are a welcoming community dedicated to serving Allah and our local community.</p>
+          </div>
+        </div>
+        
+        {/* Navigation buttons positioned directly under the carousel with no separation */}
+        <div className="px-4 py-8 md:py-28">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
+              <button 
+                onClick={() => {
+                  const element = document.getElementById('about-us')
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
+                className="bg-white bg-opacity-10 hover:bg-opacity-20 p-3 sm:p-4 md:p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col justify-center items-center text-center h-20 sm:h-28 md:h-32 text-white"
+              >
+                <h3 className="text-xs sm:text-sm md:text-lg font-semibold mb-1">About Us</h3>
                 <p className="text-xs opacity-80 leading-tight">Learn about our community</p>
-              </div>
-            </button>
-            
-            <Link 
-              href="/events" 
-              className="bg-white bg-opacity-10 hover:bg-opacity-20 p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col text-center h-32"
-            >
-              <div className="flex-1 flex flex-col justify-center">
-                <h3 className="text-lg font-semibold mb-2 h-6 flex items-center justify-center">Events</h3>
+              </button>
+              
+              <Link 
+                href="/events" 
+                className="bg-white bg-opacity-10 hover:bg-opacity-20 p-3 sm:p-4 md:p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col justify-center items-center text-center h-20 sm:h-28 md:h-32 text-white"
+              >
+                <h3 className="text-xs sm:text-sm md:text-lg font-semibold mb-1">Events</h3>
                 <p className="text-xs opacity-80 leading-tight">View upcoming programs</p>
-              </div>
-            </Link>
-            
-            <Link 
-              href="/prayer-times" 
-              className="bg-white bg-opacity-10 hover:bg-opacity-20 p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col text-center h-32"
-            >
-              <div className="flex-1 flex flex-col justify-center">
-                <h3 className="text-lg font-semibold mb-2 h-6 flex items-center justify-center">Prayer Times</h3>
+              </Link>
+              
+              <Link 
+                href="/prayer-times" 
+                className="bg-white bg-opacity-10 hover:bg-opacity-20 p-3 sm:p-4 md:p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col justify-center items-center text-center h-20 sm:h-28 md:h-32 text-white"
+              >
+                <h3 className="text-xs sm:text-sm md:text-lg font-semibold mb-1">Prayer Times</h3>
                 <p className="text-xs opacity-80 leading-tight">Current schedule</p>
-              </div>
-            </Link>
-            
-            <Link 
-              href="/resources" 
-              className="bg-white bg-opacity-10 hover:bg-opacity-20 p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col text-center h-32"
-            >
-              <div className="flex-1 flex flex-col justify-center">
-                <h3 className="text-lg font-semibold mb-2 h-6 flex items-center justify-center">Resources</h3>
+              </Link>
+              
+              <Link 
+                href="/resources" 
+                className="bg-white bg-opacity-10 hover:bg-opacity-20 p-3 sm:p-4 md:p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col justify-center items-center text-center h-20 sm:h-28 md:h-32 text-white"
+              >
+                <h3 className="text-xs sm:text-sm md:text-lg font-semibold mb-1">Resources</h3>
                 <p className="text-xs opacity-80 leading-tight">Learn about Islam</p>
-              </div>
-            </Link>
-            
-            <Link 
-              href="/contact" 
-              className="bg-white bg-opacity-10 hover:bg-opacity-20 p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col text-center h-32"
-            >
-              <div className="flex-1 flex flex-col justify-center">
-                <h3 className="text-lg font-semibold mb-2 h-6 flex items-center justify-center">Contact</h3>
+              </Link>
+              
+              <Link 
+                href="/contact" 
+                className="bg-white bg-opacity-10 hover:bg-opacity-20 p-3 sm:p-4 md:p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col justify-center items-center text-center h-20 sm:h-28 md:h-32 text-white"
+              >
+                <h3 className="text-xs sm:text-sm md:text-lg font-semibold mb-1">Contact</h3>
                 <p className="text-xs opacity-80 leading-tight">Get in touch with us</p>
-              </div>
-            </Link>
-            
-            <Link 
-              href="/donate" 
-              className="bg-white bg-opacity-10 hover:bg-opacity-20 p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col text-center h-32"
-            >
-              <div className="flex-1 flex flex-col justify-center">
-                <h3 className="text-lg font-semibold mb-2 h-6 flex items-center justify-center">Donate</h3>
+              </Link>
+              
+              <Link 
+                href="/donate" 
+                className="bg-white bg-opacity-10 hover:bg-opacity-20 p-3 sm:p-4 md:p-6 rounded-lg transition-all duration-300 hover:scale-105 flex flex-col justify-center items-center text-center h-20 sm:h-28 md:h-32 text-white"
+              >
+                <h3 className="text-xs sm:text-sm md:text-lg font-semibold mb-1">Donate</h3>
                 <p className="text-xs opacity-80 leading-tight">Support our community</p>
-              </div>
-            </Link>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
