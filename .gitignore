@@ -28,6 +28,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# local only (OpenNext / Wrangler); do not commit real secrets
+.dev.vars
+
 # vercel
 .vercel
 

@@ -1,10 +1,8 @@
 {
-  // Deploy can stay `npx wrangler deploy`. `npm run build` runs Next + OpenNext (see package.json "build").
+  // Do not set wrangler [build] to opennext here: CI already runs `npm run build` (Next + OpenNext).
+  // A second OpenNext build during deploy corrupts `.open-next/cloudflare/next-env.mjs` (duplicate exports).
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mcsi",
-  "build": {
-    "command": "npm run build:cloudflare"
-  },
   "main": ".open-next/worker.js",
   "compatibility_date": "2025-05-13",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
