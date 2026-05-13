@@ -1,4 +1,5 @@
 {
+  // Deploy can stay `npx wrangler deploy`. `npm run build` runs Next + OpenNext (see package.json "build").
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mcsi",
   "build": {
